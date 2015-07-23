@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+    <data>
+        <report id="special_sale" model="sale.order" name="special_sale" rml="addons/typ_special_sale/report/special_sale.rml" string="Pedido Especial" auto="False" header="True" menu="True"/>
+    </data>
+</openerp>

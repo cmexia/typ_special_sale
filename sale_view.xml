@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+        <record id="dropshiping_sale_view_order_form_typ_new" model="ir.ui.view">
+            <field name="name">dropshipping.sale.order.line.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="special_sale" />
+                    <field name="date_arranged" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/> <!-- readonly -->
+                    <field name="ship_to" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/>
+                    <field name="import_type" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/>
+                    <field name="change_address" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/>
+                    <field name="special_ship" width="200" attrs="{'invisible':[('special_sale','=',True)],'invisible':[('change_address','=',False)]}"/>
+                    <field name="partial_supply" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/>
+                    <field name="ship_invoiced" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/>
+                    
+                </field>
+            </field>
+        </record>
+
+        <record id="dropshiping_sale_view_order_form_typ_special" model="ir.ui.view">
+            <field name="name">dropshipping.sale.order.line.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="tipo_venta" position="after">
+                    <field name="special_sale_global"/>
+                        
+               </field>
+
+            </field>
+        </record>
+</data>
+</openerp>
