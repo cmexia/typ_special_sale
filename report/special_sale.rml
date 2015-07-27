@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <document filename="Stock_Moves_Report.pdf">
-  <template pageSize="(595.0,842.0)" title="Test" author="Carlos Mexia" allowSplitting="20">
+  <template pageSize="(595.0,842.0)" title="Reporte Pedido Especial" author="Carlos Mexia" allowSplitting="20">
     <pageTemplate id="first">
         <pageGraphics>
           <place x="1.3cm" y="-20cm" height="2.55cm" width="19.0cm"> <para style="main_footer">| Tel : [[ company.partner_id.phone or '' ]] |</para>
@@ -12,32 +12,59 @@
 
   <stylesheet>
 
-    <blockTableStyle id="TERMSTABLEGREY">
+    <blockTableStyle id="TERMSTABLE">
+            <blockBackground colorName="#71A5CC" start="0,0" stop="0,4"/>
+            <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black" start="0,0" stop="-1,0" thickness="0.7"/>
+      <lineStyle kind="GRID" colorName="black" start="0,1" stop="-1,-1" thickness="0.7"/>
+      <lineStyle kind="OUTLINE" colorName="black" thickness="0.7"/>
+    </blockTableStyle>  
+
+    <blockTableStyle id="ITEMSTABLE">
             <blockBackground colorName="white" start="0,0" stop="-1,0"/>
             <blockValign value="TOP"/>
       <lineStyle kind="GRID" colorName="black" start="0,0" stop="-1,0" thickness="0.7"/>
       <lineStyle kind="GRID" colorName="black" start="0,1" stop="-1,-1" thickness="0.7"/>
       <lineStyle kind="OUTLINE" colorName="black" thickness="0.7"/>
-    </blockTableStyle>  
+    </blockTableStyle>
 
-    <blockTableStyle id="TABLEHEADER">
-            <blockBackground colorName="lightgrey" start="0,0" stop="-1,0"/>
+    <blockTableStyle id="ITEMSTABLEHEADER">
+            <blockBackground colorName="#71A5CC" start="0,0" stop="-1,0"/>
+            <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black" start="0,0" stop="-1,0" thickness="0.7"/>
+      <lineStyle kind="GRID" colorName="black" start="0,1" stop="-1,-1" thickness="0.7"/>
+      <lineStyle kind="OUTLINE" colorName="black" thickness="0.7"/>
+    </blockTableStyle>
+
+    <blockTableStyle id="SPECIALSHIPTABLE">
+            <blockBackground colorName="yellow" start="0,0" stop="-1,0"/>
             <blockValign value="TOP"/>
       <lineStyle kind="GRID" colorName="black" start="0,0" stop="-1,0" thickness="0.7"/>
       <lineStyle kind="GRID" colorName="black" start="0,1" stop="-1,-1" thickness="0.7"/>
       <lineStyle kind="OUTLINE" colorName="black" thickness="0.7"/>
     </blockTableStyle>  
 
+    <blockTableStyle id="NOTETABLEHEADER">
+            <blockBackground colorName="lightgrey" start="0,0" stop="-1,0"/>
+            <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black" start="0,0" stop="-1,0" thickness="0.7"/>
+      <lineStyle kind="GRID" colorName="black" start="0,1" stop="-1,-1" thickness="0.7"/>
+      <lineStyle kind="OUTLINE" colorName="black" thickness="0.7"/>
+    </blockTableStyle>
+
   <paraStyle name="ITEMSRIGHT" alignment="RIGHT" fontName="Helvetica" fontSize="8.0" leading="8" spaceBefore="2.0" textColor="black"/>
-  <paraStyle name="ITEMSLEFT"  alignment="LEFT"  fontName="Helvetica" fontSize="8.0" leading="4" spaceBefore="2.0" textColor="black"/>
-  <paraStyle name="HEADER" alignment="LEFT" fontName="Helvetica-Bold" fontSize="10.0" leading="11" spaceBefore="5.0"/>
+  <paraStyle name="ITEMSLEFT"  alignment="LEFT"  fontName="Helvetica" fontSize="8.0" leading="8" spaceBefore="1.0" textColor="white"/>
+  <paraStyle name="ITEMSLEFTBLACK" alignment="LEFT" fontName="Helvetica" fontSize="8.0" leading="11" spaceBefore="5.0" textColor="black"/>
+  <paraStyle name="HEADER" alignment="RIGHT" fontName="Helvetica-Bold" fontSize="10.0" leading="11" spaceBefore="5.0"/>
   <paraStyle name="TABLEHEADER" alignment="LEFT" fontName="Helvetica-Bold" fontSize="8.0" leading="11" spaceBefore="5.0"/>
-    </stylesheet>
+  <paraStyle name="SPECIALSHIPHEADER" alignment="CENTER" fontName="Helvetica-Bold" fontSize="9.0" leading="11" spaceBefore="5.0" textColor="RED"/>
+  <paraStyle name="NOTESHEADER" alignment="CENTER" fontName="Helvetica-Bold" fontSize="9.0" leading="11" spaceBefore="5.0" textColor="black"/>
+</stylesheet>
 
   <images/>
   <story>
-<!--TABLA DE ITEMS-->   
-<para>[[ setLang(user.lang) ]]</para>
+<!--TABLA DE ITEMS-->
+<para>[[repeatIn(objects,'o')]]</para>
 <section>
   <para style="ITEMSRIGHT"> </para>
   <para style="HEADER">Pedido Especial</para>
@@ -45,59 +72,101 @@
   </section>
   <para style="ITEMSRIGHT"></para>
   <para style="ITEMSRIGHT"></para>
-  <!-- <blockTable repeatRows="1" colWidths="55.0,55.0,55.0,50.0,50.0,30.0,50.0,55.0,30.0,50.0" style="TABLEHEADER">
-          <tr>
-            <td><para style="TABLEHEADER">Folio Pedido de Venta</para></td>
-            <td><para style="TABLEHEADER">Fecha pedido</para></td>
-            <td><para style="TABLEHEADER">Fecha pactada entrega</para></td>
-            <td><para style="TABLEHEADER">Proveedor</para></td>
-            <td><para style="TABLEHEADER">Embarcar a: </para></td>
-            <td><para style="TABLEHEADER">Surtir parcial?</para></td>
-            <td><para style="TABLEHEADER">Tipo de importacion</para></td>
-            <td><para style="TABLEHEADER">Embarque por:</para></td>
-            <td><para style="TABLEHEADER">Facturar a cliente?</para></td>
-            <td><para style="TABLEHEADER">Moneda</para></td>
-          </tr>
-   </blockTable> -->
-   <blockTable colWidths="200.0,200.0" style="TERMSTABLEGREY">
+  <pto>
+    <pto_header>
+      <section>
+  <para style="ITEMSRIGHT"> </para>
+  <para style="HEADER">Pedido Especial</para>
+  <para style="HEADER">Fecha Elaboracion documento: [[ time.strftime('%d-%B-%Y') ]]</para>
+  </section>
+  <para style="ITEMSRIGHT"></para>
+  <para style="ITEMSRIGHT"></para>
+<blockTable colWidths="80.0,30.0,200.0,45.0,45.0,60.0" style="ITEMSTABLEHEADER">
+    <tr>
+      <td><para style="ITEMSLEFT">Modelo</para></td>
+      <td><para style="ITEMSLEFT">Ctdad</para></td>
+      <td><para style="ITEMSLEFT" alignment="CENTER">Exepcion de embarque</para></td>
+      <td><para style="ITEMSLEFT">Cargar Flete?</para></td>
+      <td><para style="ITEMSLEFT">Surtir Parcial?</para></td>
+      <td><para style="ITEMSLEFT">Fecha Pactada</para></td>
+    </tr>
+  </blockTable>
+</pto_header>
+   <section>
+   <blockTable repeatRows="1" colWidths="230.0,230.0" style="TERMSTABLE">
       <tr>
-        <td><para style="ITEMSRIGHT">Folio pedido</para></td>
-        <td><para style="ITEMSRIGHT">dato1</para></td>
+        <td><para style="ITEMSLEFTBLACK">Folio pedido</para></td>
+        <td><para style="ITEMSLEFTBLACK">[[o.name]]</para></td>
       </tr>
       <tr>
-        <td><para style="ITEMSRIGHT">Fecha pedido</para></td>
-        <td><para style="ITEMSRIGHT">dato2</para></td>
+        <td><para style="ITEMSLEFTBLACK">Fecha pedido</para></td>
+        <td><para style="ITEMSLEFTBLACK">[[o.create_date]]</para></td>
       </tr>
       <tr>
-        <td><para style="ITEMSRIGHT">Fecha pactada entrega</para></td>
-        <td><para style="ITEMSRIGHT">dato3</para></td>
+        <td><para style="ITEMSLEFTBLACK">Cliente</para></td>
+        <td><para style="ITEMSLEFTBLACK">[[o.partner_id.name]]</para></td>
       </tr>
       <tr>
-        <td><para style="ITEMSRIGHT">Proveedor</para></td>
-        <td><para style="ITEMSRIGHT">dato4</para></td>
+        <td><para style="ITEMSLEFTBLACK">Proveedor</para></td>
+        <td><para style="ITEMSLEFTBLACK">[[o.supplier_id.name]]</para></td>
       </tr>
       <tr>
-        <td><para style="ITEMSRIGHT">Fecha pactada entrega</para></td>
-        <td><para style="ITEMSRIGHT">dato3</para></td>
+        <td><para style="ITEMSLEFTBLACK">Moneda de Compra</para></td>
+        <td><para style="ITEMSLEFTBLACK">[[o.pricelist_id.currency_id.name]]</para></td>
+      </tr>
+      <tr>
+        <td><para style="ITEMSLEFTBLACK">Tipo de Envio</para></td>
+        <td><para style="ITEMSLEFTBLACK">[[o.import_type]]</para></td>
       </tr>
     </blockTable>
-<!--  <section>
-    <para>[[repeatIn(objects,'o')]]</para>
+</section>
+<section>
+      <blockTable colWidths="460" style="NOTETABLEHEADER">
+        <tr>
+          <td><para style="NOTESHEADER">Observaciones Generales</para></td>
+        </tr>
+        <tr>
+          <td><para style="ITEMSLEFTBLACK">[[o.note]]</para></td>
+      </tr>
+      </blockTable>
+    </section>
+
+    <section>
+      <blockTable colWidths="460" style="SPECIALSHIPTABLE">
+        <tr>
+          <td><para style="SPECIALSHIPHEADER">Embarque Especial</para></td>
+        </tr>
+        <tr>
+          <td><para style="ITEMSLEFTBLACK">[[o.special_ship_global]]</para></td>
+      </tr>
+      </blockTable>
+    </section>
+<section>
+<blockTable colWidths="80.0,30.0,200.0,45.0,45.0,60.0" style="ITEMSTABLEHEADER">
+    <tr>
+      <td><para style="ITEMSLEFT">Modelo</para></td>
+      <td><para style="ITEMSLEFT">Ctdad</para></td>
+      <td><para style="ITEMSLEFT">Exepcion de embarque</para></td>
+      <td><para style="ITEMSLEFT">Cargar Flete?</para></td>
+      <td><para style="ITEMSLEFT">Surtir Parcial?</para></td>
+      <td><para style="ITEMSLEFT">Fecha Pactada</para></td>
+    </tr>
+  </blockTable>
+</section>
+  <section>
+    <para>[[repeatIn(o.order_line,'line')]]</para>
     <para>[[ setLang(user.lang) ]]</para>
-    <blockTable colWidths="55.0,55.0,55.0,50.0,50.0,30.0,50.0,55.0,30.0,50.0" style="TERMSTABLEGREY">
+    <blockTable colWidths="80.0,30.0,200.0,45.0,45.0,60.0" style="ITEMSTABLE">
           <tr>
-            <td><para style="ITEMSRIGHT"></para></td>
-            <td><para style="ITEMSRIGHT"></para></td>
-            <td><para style="ITEMSRIGHT"></para></td>
-            <td><para style="ITEMSRIGHT"></para></td>
-            <td><para style="ITEMSRIGHT"></para></td>
-            <td><para style="ITEMSRIGHT">[[formatLang(o.product_qty, digits= 0)]] -[[o.product_uom.name]]</para></td>
-            <td><para style="ITEMSRIGHT"></para></td>
-            <td><para style="ITEMSRIGHT"></para></td>
-            <td><para style="ITEMSRIGHT"></para></td>
-            <td><para style="ITEMSRIGHT">[[formatLang(o.product_id.qty_available, digits=0)]]</para></td>
+            <td><para style="ITEMSRIGHT">[[line.product_id.name]]</para></td>
+            <td><para style="ITEMSRIGHT">[[formatLang(line.product_uom_qty, digits=0)]]</para></td>
+            <td><para style="ITEMSLEFTBLACK">[[line.special_ship]]</para></td>
+            <td><para style="ITEMSRIGHT">[[line.ship_invoiced or 'No']]</para></td>
+            <td><para style="ITEMSRIGHT">[[line.partial_supply or 'No']]</para></td>
+            <td><para style="ITEMSRIGHT">[[line.date_arranged]]</para></td>
           </tr>
     </blockTable>
-</section> -->
+  </section>
+  </pto>
   </story>
 </document>

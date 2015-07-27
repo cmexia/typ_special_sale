@@ -11,10 +11,10 @@ class sale_order_line(osv.osv):
         'date_arranged': fields.date('Promesa Entrega', required=True),
         'ship_to': fields.selection((('cliente','Cliente'),('otro','Otro')),'Embarcar a:'),
         'partial_supply':fields.boolean('surtir parcial'),
-        'import_type': fields.selection((('semanal','Semanal'),('express','Express'),('local','Local')),'Tipo de importacion:'),
+        
         'ship_invoiced':fields.boolean('Facturar Flete'),
         'special_ship': fields.text('Embarque Especial', help="Llenar el formulario con la informacion del embarque especial"),
-        'change_address': fields.boolean('cambiar direccion embarque',"Marcar esta opcion si se va cambiar la direccion de embarque"),
+        'change_address': fields.boolean('cambiar direccion embarque',help="Marcar esta opcion si se va cambiar la direccion de embarque"),
         
         }
     _defaults = {
@@ -26,7 +26,14 @@ class sale_order(osv.osv):
     _inherit ='sale.order'
     _columns = {
         'special_sale_global': fields.boolean('Venta Especial'),
+        'special_ship_global': fields.text('Embarque Especial'),
+        # 'supplier_id': fields.related("partner_id",'supplier_id',"Proveedor",type="many2one",relation="res.partner", help="id proveedor para pedido especial"),
+        'supplier_id': fields.many2one('res.partner','Proveedor'),
+        'import_type': fields.selection((('semanal','Semanal'),('express','Express'),('local','Local')),'Tipo de importacion:'),
         }
+    _defaults = {
+        'special_ship_global': "ATENCION A: \n DIRECCION: \n COLONIA:\n CODIGO POSTAL:\n TELEFONO:\n CIUDAD:\n RFC:",
+    }
     ######## HERENCIA AL METODO CONFIRMAR PEDIDO DE VENTA ######
     def action_button_confirm(self, cr, uid, ids, context=None):
         res = super(sale_order, self).action_button_confirm(cr, uid, ids,
@@ -69,8 +76,15 @@ class sale_order(osv.osv):
                     #         tuple(purchase_line_ids)))
 
         return res
-
-###### HERENCIA A LINEAS DEL COMPRA #######
+        
+## HERENCIA DE PARTNER PARA SELECCIONAR PROVEEDORES
+class partner_asignment(osv.osv):
+    _name = 'res.partner'
+    _inherit ='res.partner'
+    _columns = {
+       'supplier_id': fields.one2many('sale.order','supplier_id','Proveedor'),
+        }
+    ###### HERENCIA A LINEAS DEL COMPRA #######    
 class purchase_order_line(osv.osv):
     _name = 'purchase.order.line'
     _inherit ='purchase.order.line'
