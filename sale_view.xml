@@ -10,7 +10,9 @@
                 <field name="type" position="after">
                     <field name="special_sale" />
                     <field name="date_arranged" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/> <!-- readonly -->
-                    <field name="ship_to" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/>
+                    <field name="supplier_id" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/>
+                    <field name="import_type" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/>
+                    <!-- <field name="ship_to" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/> -->
                     <field name="change_address" attrs="{'invisible':[('special_sale','=',False)]}"/>
                     <field name="special_ship" width="200" attrs="{'invisible':[('special_sale','=',True)],'invisible':[('change_address','=',False)],'required':[('change_address','=',True)]}"/>
                     <field name="partial_supply" attrs="{'invisible':[('special_sale','=',False)]}"/>
@@ -29,9 +31,9 @@
                     <xpath expr="//group[@name='sale_margin_grp']" position="after">
                     <group name="special_sale_grp">
                       <field name="special_sale_global"/>
-                      <field name="supplier_id" attrs="{'required':[('special_sale_global','=',True)],'invisible':[('special_sale_global','=',False)]}"/>  
-                      <field name="special_ship_global" width="300" attrs="{'required':[('special_sale_global','=',True)],'invisible':[('special_sale_global','=',False)]}"/>
-                      <field name="import_type" width="100" attrs="{'required':[('special_sale_global','=',True)],'invisible':[('special_sale_global','=',False)]}"/>
+                        
+                      <field name="special_ship_global" width="300" attrs="{'invisible':[('special_sale_global','=',False)]}"/>
+                      <!-- <field name="import_type" width="100" attrs="{'required':[('special_sale_global','=',True)],'invisible':[('special_sale_global','=',False)]}"/> -->
                   </group>
 
               </xpath>

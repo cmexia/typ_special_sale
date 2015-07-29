@@ -39,7 +39,7 @@ report_sxw.report_sxw(
     'sale.order',
     'addons/typ_special_sale/report/special_sale.rml',
     parser=special_sale_parser,
-    header=True,
+    header=False,
 )
 
 
