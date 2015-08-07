@@ -12,7 +12,7 @@
                     <field name="date_arranged" attrs="{'required':[('type','=','make_to_order')],'invisible':[('type','!=','make_to_order')]}"/>
                     <field name="supplier_id" attrs="{'required':[('type','=','make_to_order')],'invisible':[('type','!=','make_to_order')]}"/>
                     <field name="import_type" attrs="{'required':[('type','=','make_to_order')],'invisible':[('type','!=','make_to_order')]}"/>
-                    <field name="ship_to" attrs="{'invisible':[('type','!=','make_to_order')]}"/>
+                    <field name="ship_to" attrs="{ 'invisible':[('type','!=','make_to_order')]}"/>
                     <field name="change_address" attrs="{'invisible':[('type','!=','make_to_order')]}"/>
                     <field name="special_ship" width="200" attrs="{'invisible':[('type','!=','make_to_order')],'invisible':[('change_address','=',False)],'required':[('change_address','=',True)]}"/>
                     <field name="partial_supply" attrs="{'invisible':[('type','!=','make_to_order')]}"/>
