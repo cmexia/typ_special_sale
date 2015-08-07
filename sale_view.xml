@@ -8,15 +8,15 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="type" position="after">
-                    <field name="special_sale" />
-                    <field name="date_arranged" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/> <!-- readonly -->
-                    <field name="supplier_id" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/>
-                    <field name="import_type" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/>
-                    <!-- <field name="ship_to" attrs="{'required':[('special_sale','=',True)],'invisible':[('special_sale','=',False)]}"/> -->
-                    <field name="change_address" attrs="{'invisible':[('special_sale','=',False)]}"/>
-                    <field name="special_ship" width="200" attrs="{'invisible':[('special_sale','=',True)],'invisible':[('change_address','=',False)],'required':[('change_address','=',True)]}"/>
-                    <field name="partial_supply" attrs="{'invisible':[('special_sale','=',False)]}"/>
-                    <field name="ship_invoiced" attrs="{'invisible':[('special_sale','=',False)]}"/>
+                    <!-- <field name="special_sale"/> validar si se va ocupar-->
+                    <field name="date_arranged" attrs="{'required':[('type','=','make_to_order')],'invisible':[('type','!=','make_to_order')]}"/>
+                    <field name="supplier_id" attrs="{'required':[('type','=','make_to_order')],'invisible':[('type','!=','make_to_order')]}"/>
+                    <field name="import_type" attrs="{'required':[('type','=','make_to_order')],'invisible':[('type','!=','make_to_order')]}"/>
+                    <field name="ship_to" attrs="{'invisible':[('type','!=','make_to_order')]}"/>
+                    <field name="change_address" attrs="{'invisible':[('type','!=','make_to_order')]}"/>
+                    <field name="special_ship" width="200" attrs="{'invisible':[('type','!=','make_to_order')],'invisible':[('change_address','=',False)],'required':[('change_address','=',True)]}"/>
+                    <field name="partial_supply" attrs="{'invisible':[('type','!=','make_to_order')]}"/>
+                    <field name="ship_invoiced" attrs="{'invisible':[('type','!=','make_to_order')]}"/>
                     
                 </field>
             </field>
@@ -35,9 +35,22 @@
                       <field name="special_ship_global" width="300" attrs="{'invisible':[('special_sale_global','=',False)]}"/>
                       <!-- <field name="import_type" width="100" attrs="{'required':[('special_sale_global','=',True)],'invisible':[('special_sale_global','=',False)]}"/> -->
                   </group>
-
               </xpath>
             </field>
+        </record>
+
+        <record id="special_order_tree_filter" model="ir.ui.view">
+          <field name="name">special.order.tree.filter</field>
+          <field name="model">sale.order</field>
+          <field name="type">search</field>
+          <field name="priority" eval="20"/>
+          <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+          <field name="arch" type="xml">
+            <search string="Search Sales Order">
+              <filter string="Pedido Especial" name="special_sale_true" domain="[('special_sale_global','=','1')]"/>
+              <separator/>
+        </search>
+      </field>
         </record>
 </data>
 </openerp>

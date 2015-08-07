@@ -7,15 +7,19 @@ class sale_order_line(osv.osv):
     _name = 'sale.order.line'
     _inherit ='sale.order.line'
     _columns = {
-        'special_sale': fields.boolean('Venta Especial'),
         'date_arranged': fields.date('Promesa Entrega', required=True),
-        'ship_to': fields.selection((('cliente','Cliente'),('otro','Otro')),'Embarcar a:'),
+        'ship_to': fields.selection(
+            (('CEDIS','CEDIS'),('TYP_HMO','Tienda Hermosillo'),('TYP_OBG','Tienda Obregon'),
+             ('TYP_CLN','Tienda Culiacan'),('TYP_GDL','Tienda Guadalajara'),('TYP_LPZ','Tienda La Paz'),
+             ('TYP_LMS','Tienda Los Mochis'),('TYP_MXL','Tienda Mexicali'),('TYP_NGZ','Tienda Nogales'),
+             ('TYP_TJ','Tienda Tijuana')),'Envio a Tienda:'),
+
         'partial_supply':fields.boolean('surtir parcial'), 
         'ship_invoiced':fields.boolean('Facturar Flete'),
         'special_ship': fields.text('Embarque Especial', help="Llenar el formulario con la informacion del embarque especial"),
         'change_address': fields.boolean('cambiar direccion embarque',help="Marcar esta opcion si se va cambiar la direccion de embarque"),
         'supplier_id': fields.many2one('res.partner','Proveedor'),
-        'import_type': fields.selection((('semanal','Semanal'),('express','Express'),('local','Local')),'Tipo de importacion:'),
+        'import_type': fields.selection((('Semanal','semanal'),('Express','express'),('N/A','n/a')),'Tipo de importacion:'),
 
         }
     _defaults = {
@@ -27,7 +31,6 @@ class sale_order(osv.osv):
     _inherit ='sale.order'
     _columns = {
         'special_sale_global': fields.boolean('Venta Especial'),
-        # 'supplier_id': fields.many2one('res.partner','Proveedor'), va ir aqui tmb?
         'special_ship_global': fields.text('Embarque Especial'),
         'create_uid': fields.many2one('res.users','Usuario',readonly=1),
         }
