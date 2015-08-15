@@ -13,29 +13,37 @@ class sale_order_line(osv.osv):
              ('TYP_CLN','Tienda Culiacan'),('TYP_GDL','Tienda Guadalajara'),('TYP_LPZ','Tienda La Paz'),
              ('TYP_LMS','Tienda Los Mochis'),('TYP_MXL','Tienda Mexicali'),('TYP_NGZ','Tienda Nogales'),
              ('TYP_TJ','Tienda Tijuana')),'Envio a Tienda:'),
-
+        'imported':fields.boolean('Importacion', help="Marcar si es producto importado"),
         'partial_supply':fields.boolean('surtir parcial'), 
         'ship_invoiced':fields.boolean('Facturar Flete'),
-        'special_ship': fields.text('Embarque Especial', help="Llenar el formulario con la informacion del embarque especial"),
+        'special_ship': fields.text('Embarque Especial', help="ATENCION A:\nDIRECCION:\nCOLONIA:\nC.P.:\nTELEFONO:\nCIUDAD:\nRFC:"),
         'change_address': fields.boolean('cambiar direccion embarque',help="Marcar esta opcion si se va cambiar la direccion de embarque"),
         'supplier_id': fields.many2one('res.partner','Proveedor'),
-        'import_type': fields.selection((('Semanal','semanal'),('Express','express'),('N/A','n/a')),'Tipo de importacion:'),
+        'import_type': fields.selection((('Semanal','semanal'),('Express','express'),),'Tipo de importacion:'),
+        'broker': fields.char('Agencia', size=60),
+        'carrier': fields.char('Fletera', size=60),
+        'arrange': fields.char('Compromisos de Venta', size=128 , help="Llenar con los acuerdos en caso de haber un precio pactado o descuento"),
 
         }
-    _defaults = {
-        'special_ship': "ATENCION A:\nDIRECCION:\nCOLONIA:\nCODIGO POSTAL:\nTELEFONO:\nCIUDAD:\nRFC:",
-    }
+    _defaults = {}
+    # def _validar_campos(self,cr,uid,ids,context=None):
+    #     record = self.browse(cr,uid,ids,context=context)[0]
+    #     for rec in record:
+    #         if rec.ship_to and rec.special_ship:
+    #             return True
+    #         return False
+    # _constraints = [(_validar_campos,'Error o es a tienda u otra direccion',['special_ship'])],
 ###### HERENCIA DE PEDIDO DE VENTA #######
 class sale_order(osv.osv):
     _name = 'sale.order'
     _inherit ='sale.order'
     _columns = {
         'special_sale_global': fields.boolean('Venta Especial'),
-        'special_ship_global': fields.text('Embarque Especial'),
+        'special_ship_global': fields.text('Embarque Especial', help="Llenar Solamente cuando todos los produtos vayan a la misma direccion"),
         'create_uid': fields.many2one('res.users','Usuario',readonly=1),
         }
     _defaults = {
-        'special_ship_global': "ATENCION A:\nDIRECCION:\nCOLONIA:\nC.P.:\nTELEFONO:\nCIUDAD:\nRFC:",
+        # 'special_ship_global': "ATENCION A:\nDIRECCION:\nCOLONIA:\nC.P.:\nTELEFONO:\nCIUDAD:\nRFC:",
     }
     ######## HERENCIA AL METODO CONFIRMAR PEDIDO DE VENTA ######
     def action_button_confirm(self, cr, uid, ids, context=None):

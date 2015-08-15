@@ -1,74 +1,62 @@
 <?xml version="1.0"?>
 <document filename="Stock_Moves_Report.pdf">
   <template pageSize="(27.9cm,21.5cm)" title="Reporte Pedido Especial" author="Carlos Mexia" allowSplitting="20">
-    <pageTemplate id="second">
-      <frame id="first" x1="2.9cm" y1="42.0" width="22.5cm" height="17.9cm"/>
-  <pageGraphics>
-  <image x="1.3cm" y="19.5cm" height="40.0" >[[ company.logo or removeParentNode('image') ]]</image>
-  <fill color="black"/> <stroke color="black"/>
-  <lines>1.3cm 19.4cm 27cm 19.4cm</lines>
-  <place x="1.3cm" y="16.8cm" height="2.55cm" width="19.0cm">
-    <para style="header"><b>[[user.company_id.name]]</b></para>
-  </place>
-  <rotate degrees="90"/> <fill color="grey"/><drawString x="2.65cm" y="-0.4cm">www.typrefrigeracion.com.mx</drawString> <fill color="black"/> <rotate degrees="-90"/>
-  <lines>1.3cm 0.8cm 27cm 0.8cm</lines><place x="10.0cm" y="-1.8cm" height="2.55cm" width="19.0cm"> 
-  <para style="main_footer"></para> <para style="main_footer">Contacto : [[ user.name ]] | Email : [[ user.email ]]- Pagina: <pageNumber/></para> </place>  
-  </pageGraphics>
-    </pageTemplate>
+    <pageTemplate id="first">
+      <frame id="first" x1="2.0cm" y1="42.0" width="23.5cm" height="17.9cm"/>
+        <pageGraphics>
+          <image x="1.3cm" y="19.5cm" height="40.0" >[[ company.logo or removeParentNode('image') ]]</image>
+          <fill color="black"/> <stroke color="black"/>
+          <lines>1.3cm 19.4cm 27cm 19.4cm</lines>
+          <place x="1.3cm" y="16.8cm" height="2.55cm" width="19.0cm">
+            <para style="header"><b>[[user.company_id.name]]</b></para>
+          </place>
+          <rotate degrees="90"/> <fill color="grey"/><drawString x="2.65cm" y="-0.4cm">www.typrefrigeracion.com.mx</drawString> <fill color="black"/> <rotate degrees="-90"/>
+          <lines>1.3cm 0.8cm 27cm 0.8cm</lines>
+          <place x="10.0cm" y="-1.8cm" height="2.55cm" width="19.0cm"> 
+            <para style="main_footer"></para> <para style="main_footer">Contacto : [[ user.name ]] | Email : [[ user.email ]]- Pagina: <pageNumber/></para>
+          </place>  
+        </pageGraphics>
+      </pageTemplate>
   </template>
 
   <stylesheet>
-
     <blockTableStyle id="TERMSTABLE">
-            <blockBackground colorName="#71A5CC" start="0,0" stop="0,4"/>
             <blockValign value="TOP"/>
-      <lineStyle kind="GRID" colorName="black" start="0,0" stop="-1,0" thickness="0.7"/>
-      <lineStyle kind="GRID" colorName="black" start="0,1" stop="-1,-1" thickness="0.7"/>
-      <lineStyle kind="OUTLINE" colorName="black" thickness="0.7"/>
-    </blockTableStyle>  
-
-    <blockTableStyle id="ITEMSTABLE">
-            <blockBackground colorName="white" start="0,0" stop="-1,0"/>
-            <blockValign value="MIDDLE"/>
-      <lineStyle kind="GRID" colorName="black" start="0,0" stop="-1,0" thickness="0.7"/>
-      <lineStyle kind="GRID" colorName="black" start="0,1" stop="-1,-1" thickness="0.7"/>
-      <lineStyle kind="OUTLINE" colorName="black" thickness="0.7"/>
-    </blockTableStyle>
-
-    <blockTableStyle id="ITEMSTABLEHEADER">
-            <blockBackground colorName="#71A5CC" start="0,0" stop="-1,0"/>
-            <blockValign value="TOP"/>
-      <lineStyle kind="GRID" colorName="black" start="0,0" stop="-1,0" thickness="0.7"/>
-      <lineStyle kind="GRID" colorName="black" start="0,1" stop="-1,-1" thickness="0.7"/>
-      <lineStyle kind="OUTLINE" colorName="black" thickness="0.7"/>
+            <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,0" stop="1,4"/>
+            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="10,-1"/> 
     </blockTableStyle>
 
     <blockTableStyle id="SPECIALSHIPTABLE">
-            <blockBackground colorName="yellow" start="0,0" stop="-1,0"/>
-            <blockValign value="TOP"/>
-      <lineStyle kind="GRID" colorName="black" start="0,0" stop="-1,0" thickness="0.7"/>
-      <lineStyle kind="GRID" colorName="black" start="0,1" stop="-1,-1" thickness="0.7"/>
-      <lineStyle kind="OUTLINE" colorName="black" thickness="0.7"/>
+           <blockValign value="TOP"/>
+            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,0"/>
     </blockTableStyle>  
 
     <blockTableStyle id="NOTETABLEHEADER">
-            <blockBackground colorName="lightgrey" start="0,0" stop="-1,0"/>
             <blockValign value="TOP"/>
-      <lineStyle kind="GRID" colorName="black" start="0,0" stop="-1,0" thickness="0.7"/>
-      <lineStyle kind="GRID" colorName="black" start="0,1" stop="-1,-1" thickness="0.7"/>
-      <lineStyle kind="OUTLINE" colorName="black" thickness="0.7"/>
+            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,0"/>
+    </blockTableStyle>
+
+    <blockTableStyle id="Table_Order_Pur_line_Content">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="MIDDLE"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="10,-1"/>
+    </blockTableStyle>
+
+    <blockTableStyle id="Table_Header_Pur_ord_Line">
+          <blockAlignment value="LEFT"/>
+          <blockValign value="TOP"/>
+          <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="10,-1"/>
     </blockTableStyle>
 
   <paraStyle name="ITEMSRIGHT" alignment="RIGHT" fontName="Helvetica" fontSize="8.0" leading="8" spaceBefore="2.0" textColor="black"/>
-  <paraStyle name="ITEMSLEFT"  alignment="LEFT"  fontName="Helvetica-Bold" fontSize="8.0" leading="8" spaceBefore="1.0" textColor="white"/>
   <paraStyle name="ITEMSLEFTBLACK" alignment="LEFT" fontName="Helvetica" fontSize="8.0" leading="11" spaceBefore="5.0" textColor="black"/>
   <paraStyle name="HEADER" alignment="RIGHT" fontName="Helvetica-Bold" fontSize="10.0" leading="11" spaceBefore="5.0"/>
-  <paraStyle name="TABLEHEADER" alignment="LEFT" fontName="Helvetica-Bold" fontSize="8.0" leading="11" spaceBefore="5.0"/>
   <paraStyle name="SPECIALSHIPHEADER" alignment="CENTER" fontName="Helvetica-Bold" fontSize="9.0" leading="11" spaceBefore="5.0" textColor="RED"/>
   <paraStyle name="SPECIALSHIPNOTES" alignment="LEFT" fontName="Helvetica" fontSize="7.0" leading="5" spaceBefore="5.0" textColor="black"/>
   <paraStyle name="NOTESHEADER" alignment="CENTER" fontName="Helvetica-Bold" fontSize="9.0" leading="11" spaceBefore="5.0" textColor="black"/>
-</stylesheet>
+  <paraStyle name="LINEHEADER" alignment="LEFT" fontName="Helvetica-Bold" fontSize="8.0" leading="8" spaceBefore="5.0" textColor="black"/>
 
+</stylesheet>
   <images/>
   <story>
 <!--TABLA DE ITEMS-->
@@ -89,96 +77,105 @@
   </section>
   <para style="ITEMSRIGHT"></para>
   <para style="ITEMSRIGHT"></para>
-<blockTable colWidths="80.0,100.0,30.0,200.0,45.0,45.0,60.0,64.0" style="ITEMSTABLEHEADER">
+<blockTable colWidths="80.0,55.0,30.0,135.0,40.0,44.0,60.0,60.0,60.0,60.0,60.0" style="Table_Header_Pur_ord_Line">
     <tr>
-      <td><para style="ITEMSLEFT">Modelo</para></td>
-      <td><para style="ITEMSLEFT">Proveedor</para></td>
-      <td><para style="ITEMSLEFT">Cant</para></td>
-      <td><para style="ITEMSLEFT" alignment="CENTER">Exepcion de embarque</para></td>
-      <td><para style="ITEMSLEFT">Cargar Flete</para></td>
-      <td><para style="ITEMSLEFT">Surtir Parcial</para></td>
-      <td><para style="ITEMSLEFT">Fecha Pactada</para></td>
-      <td><para style="ITEMSLEFT">Tipo de importación</para></td>
+      <td><para style="LINEHEADER"> </para></td>
+      <td><para style="LINEHEADER"> </para></td>
+      <td><para style="LINEHEADER"> </para></td>
+      <td><para style="LINEHEADER"> </para></td>
+      <td><para style="LINEHEADER"> </para></td>
+      <td><para style="LINEHEADER"> </para></td>
+      <td><para style="LINEHEADER"> </para></td>
+      <td><para style="LINEHEADER"> </para></td>
+      <td><para style="LINEHEADER"> </para></td>
+      <td><para style="LINEHEADER"> </para></td>
+      <td><para style="LINEHEADER"> </para></td>
+    </tr>
+    <tr>
+      <td><para style="LINEHEADER">Modelo</para></td>
+      <td><para style="LINEHEADER">Proveedor</para></td>
+      <td><para style="LINEHEADER">Cant</para></td>
+      <td><para style="LINEHEADER" alignment="CENTER">Exepcion de embarque</para></td>
+      <td><para style="LINEHEADER">Cargar Flete</para></td>
+      <td><para style="LINEHEADER">Surtir Parcial</para></td>
+      <td><para style="LINEHEADER">Fecha Pactada</para></td>
+      <td><para style="LINEHEADER">Tipo de importación</para></td>
+      <td><para style="LINEHEADER">Aduana</para></td>
+      <td><para style="LINEHEADER">Fletera</para></td>
+      <td><para style="LINEHEADER">Acuerdos Venta</para></td>
     </tr>
   </blockTable>
 </pto_header>
    <section>
-   <blockTable repeatRows="1" colWidths="312.0,312.0" style="TERMSTABLE">
+   <blockTable repeatRows="1" colWidths="342.0,342.0" style="TERMSTABLE">
       <tr>
-        <td><para style="ITEMSLEFT">Folio pedido</para></td>
+        <td><para style="NOTESHEADER">Folio pedido</para></td>
         <td><para style="ITEMSLEFTBLACK">[[o.name]]</para></td>
       </tr>
       <tr>
-        <td><para style="ITEMSLEFT">Fecha pedido</para></td>
+        <td><para style="NOTESHEADER">Fecha pedido</para></td>
         <td><para style="ITEMSLEFTBLACK">[[o.create_date]]</para></td>
       </tr>
       <tr>
-        <td><para style="ITEMSLEFT">Cliente</para></td>
+        <td><para style="NOTESHEADER">Cliente</para></td>
         <td><para style="ITEMSLEFTBLACK">[[o.partner_id.name]]</para></td>
       </tr>
-      <!-- <tr>
-        <td><para style="ITEMSLEFTBLACK">Proveedor</para></td>
-        <td><para style="ITEMSLEFTBLACK">[[o.supplier_id.name]]</para></td>
-      </tr> va proveedor?--> 
       <tr>
-        <td><para style="ITEMSLEFT">Moneda de Compra</para></td>
+        <td><para style="NOTESHEADER">Moneda de Compra</para></td>
         <td><para style="ITEMSLEFTBLACK">[[o.pricelist_id.currency_id.name]]</para></td>
-      </tr>
-      <tr>
-        <td><para style="ITEMSLEFT">Enviar a:</para></td>
-        <td><para style="ITEMSLEFTBLACK">[[ o.partner_shipping_id and display_address(o.partner_shipping_id) ]]</para></td>
       </tr>
     </blockTable>
 </section>
 <section>
-      <blockTable colWidths="624" style="NOTETABLEHEADER">
+      <blockTable colWidths="342.0,342.0" style="NOTETABLEHEADER">
         <tr>
-          <td><para style="NOTESHEADER">Observaciones Generales</para></td>
-        </tr>
-        <tr>
-          <td><para style="ITEMSLEFTBLACK">[[o.note]]</para></td>
-      </tr>
+          <td><para style="LINEHEADER" alignment="CENTER">Observaciones Generales</para></td>
+          <td><para style="SPECIALSHIPHEADER">Embarque Especial</para></td>
+          </tr>
       </blockTable>
     </section>
 
     <section>
-      <blockTable colWidths="624" style="SPECIALSHIPTABLE">
+      <blockTable colWidths="342.0,342.0" style="SPECIALSHIPTABLE">
         <tr>
-          <td><para style="SPECIALSHIPHEADER">Embarque Especial</para></td>
-        </tr>
-        <tr>
-          <td><para style="SPECIALSHIPNOTES">[[o.special_ship_global]]</para></td>
+          <td><para style="ITEMSRIGHT" alignment="LEFT">[[o.note]]</para></td>
+          <td><para style="ITEMSLEFTBLACK">[[ o.special_ship_global or (o.partner_shipping_id and display_address(o.partner_shipping_id)) ]]</para></td>
       </tr>
       </blockTable>
     </section>
 <section>
-<blockTable colWidths="80.0,100.0,30.0,200.0,45.0,45.0,60.0,64.0" style="ITEMSTABLEHEADER">
+<blockTable colWidths="80.0,55.0,30.0,135.0,40.0,44.0,60.0,60.0,60.0,60.0,60.0" style="Table_Header_Pur_ord_Line">
     <tr>
-      <td><para style="ITEMSLEFT">Modelo</para></td>
-      <td><para style="ITEMSLEFT">Proveedor</para></td>
-      <td><para style="ITEMSLEFT">Cant</para></td>
-      <td><para style="ITEMSLEFT" alignment="CENTER">Exepcion de embarque</para></td>
-      <td><para style="ITEMSLEFT">Cargar Flete</para></td>
-      <td><para style="ITEMSLEFT">Surtir Parcial</para></td>
-      <td><para style="ITEMSLEFT">Fecha Pactada</para></td>
-      <td><para style="ITEMSLEFT">Tipo Importacion</para></td>
+      <td><para style="LINEHEADER">Modelo</para></td>
+      <td><para style="LINEHEADER">Proveedor</para></td>
+      <td><para style="LINEHEADER">Cant</para></td>
+      <td><para style="LINEHEADER" alignment="CENTER">Exepcion de embarque</para></td>
+      <td><para style="LINEHEADER">Cargar Flete</para></td>
+      <td><para style="LINEHEADER">Surtir Parcial</para></td>
+      <td><para style="LINEHEADER">Fecha Pactada</para></td>
+      <td><para style="LINEHEADER">Tipo Importacion</para></td>
+      <td><para style="LINEHEADER" alignment="CENTER">Aduana</para></td>
+      <td><para style="LINEHEADER" alignment="CENTER">Fletera</para></td>
+      <td><para style="LINEHEADER" alignment="CENTER">Acuerdos Venta</para></td>
     </tr>
   </blockTable>
 </section>
   <section>
-    <!-- <para>[[repeatIn(o.order_line,'line')]]</para> -->
-    <para>[[repeatIn(filter(lambda l: l.special_sale==True, o.order_line),'line')]]</para>
+    <para>[[repeatIn(filter(lambda l: l.type!='make_to_stock', o.order_line),'line')]]</para>
     <para>[[ setLang(user.lang) ]]</para>
-    <blockTable colWidths="80.0,100.0,30.0,200.0,45.0,45.0,60.0,64.0" style="ITEMSTABLE">
+    <blockTable colWidths="80.0,55.0,30.0,135.0,40.0,44.0,60.0,60.0,60.0,60.0,60.0" style="Table_Order_Pur_line_Content">
           <tr>
-            <td><para style="ITEMSRIGHT">[[line.product_id.name]]</para></td>
+            <td><para style="ITEMSRIGHT" alignment="LEFT">[[line.product_id.name]]</para></td>
             <td><para style="ITEMSRIGHT">[[line.supplier_id.name]]</para></td>
             <td><para style="ITEMSRIGHT">[[formatLang(line.product_uom_qty, digits=0)]]</para></td>
-            <td><para style="SPECIALSHIPNOTES">[[line.special_ship]]</para></td>
-            <td><para style="ITEMSRIGHT">[[(line.ship_invoiced==True)and 'Si' or 'No']]</para></td>
-            <td><para style="ITEMSRIGHT">[[(line.partial_supply==True)and 'Si' or 'No']]</para></td>
-            <td><para style="ITEMSRIGHT">[[line.date_arranged]]</para></td>
+            <td><para style="SPECIALSHIPNOTES" alignment="CENTER">[[line.special_ship or line.ship_to]]</para></td>
+            <td><para style="ITEMSRIGHT" alignment="CENTER">[[(line.ship_invoiced==True)and 'Si' or 'No']]</para></td>
+            <td><para style="ITEMSRIGHT" alignment="CENTER">[[(line.partial_supply==True)and 'Si' or 'No']]</para></td>
+            <td><para style="ITEMSRIGHT">[[line.date_arranged or 'Sin fecha']]</para></td>
             <td><para style="ITEMSRIGHT">[[line.import_type]]</para></td>
+            <td><para style="ITEMSRIGHT">[[line.broker]]</para></td>
+            <td><para style="ITEMSRIGHT">[[line.carrier]]</para></td>
+            <td><para style="ITEMSRIGHT">[[line.arrange]]</para></td>
           </tr>
     </blockTable>
   </section>
